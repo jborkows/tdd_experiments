@@ -19,6 +19,7 @@ public class SquareTest implements SquareInfrastructure {
     @Test
     void shouldBeAbleToCalculateArea(){
         exec(1).expectToBe(1);
+        exec(2).expectToBe(4);
     }
 
 }

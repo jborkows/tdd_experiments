@@ -5,7 +5,7 @@ public class Square {
         if(n <= 0){
             throw new NotAcceptableNumber(n);
         }
-        return 1;
+        return n*n;
     }
 
     static class NotAcceptableNumber extends RuntimeException {
