@@ -31,4 +31,9 @@ public class SquareTest implements SquareInfrastructure {
         exec(1).expectToBeStored();
     }
 
+    @Test
+    void shouldNotStoreInValidSidesIntoDB(){
+        exec(-1).expectNotToBeStored();
+    }
+
 }

@@ -39,6 +39,11 @@ public interface SquareInfrastructure {
             provide().calculate(n);
             Assertions.assertTrue(repository.valueExists(n), String.format("Value %d should have been stored in DB", n));
         }
+
+        public void expectNotToBeStored() {
+            provide().calculate(n);
+            Assertions.assertFalse(repository.valueExists(n), String.format("Value %d should not have been stored in DB", n));
+        }
     }
 
     class InMemoryRepository implements Repository {
