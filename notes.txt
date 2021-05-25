@@ -1,2 +1,2 @@
-should store invalid sides into db
+(Done) should store valid sides into db
 should not store for invalid data
