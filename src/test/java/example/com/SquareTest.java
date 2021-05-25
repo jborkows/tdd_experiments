@@ -22,4 +22,9 @@ public class SquareTest implements SquareInfrastructure {
         exec(2).expectToBe(4);
     }
 
+    @Test
+    void testCalculatingForVeryLargeNumber(){
+        exec(1073741823).expectToBePositive();
+    }
+
 }

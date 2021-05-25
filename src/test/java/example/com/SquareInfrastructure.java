@@ -30,5 +30,9 @@ public interface SquareInfrastructure {
             var area = provide().calculate(n);
             Assertions.assertEquals(i, area);
         }
+        public void expectToBePositive() {
+            var area = provide().calculate(n);
+            Assertions.assertTrue(area > 0, String.format("area for %d = %d. Is not a positive number", n, area));
+        }
     }
 }
