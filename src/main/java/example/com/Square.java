@@ -12,9 +12,11 @@ public class Square {
     }
 
     public int calculate(int n) {
-        Optional<ValidSide> maybeValidSide = ValidSide.of(n);
-        maybeValidSide.ifPresent(v->repository.saveSquareSide(v.value()));
-        return maybeValidSide.map(Square::square).orElseThrow(()->new NotAcceptableNumber(n));
+        return ValidSide.of(n).map(Square::square).orElseThrow(()->new NotAcceptableNumber(n));
+    }
+
+    public void storeValue(int n){
+        ValidSide.of(n).ifPresent(v->repository.saveSquareSide(v.value()));
     }
 
     private static int square(ValidSide validSide) {
