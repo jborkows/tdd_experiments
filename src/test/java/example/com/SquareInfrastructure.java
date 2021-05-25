@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 public interface SquareInfrastructure {
 
 
-    default Validable exec(int n){
+    default Validable exec(int n) {
         return new Validable(n, new InMemoryRepository());
     }
 
@@ -21,29 +21,39 @@ public interface SquareInfrastructure {
             this.repository = repository;
         }
 
-        private Square provide(){
+        private Square provide() {
             return new Square(repository);
         }
 
-        void shouldFail(){
+        void shouldFail() {
             Assertions.assertThrows(Square.NotAcceptableNumber.class, () -> provide().calculate(n));
         }
 
+        private int calculateAndSave() {
+            Square provide = provide();
+            provide.storeValue(n);
+            try {
+                return provide.calculate(n);
+            } catch (RuntimeException e) {
+                throw e;
+            }
+        }
+
         public void expectToBe(int i) {
-            var area = provide().calculate(n);
+            var area = calculateAndSave();
             Assertions.assertEquals(i, area);
         }
 
 
         public void expectToBeStored() {
-            provide().calculate(n);
+            calculateAndSave();
             Assertions.assertTrue(repository.valueExists(n), String.format("Value %d should have been stored in DB", n));
         }
 
         public void expectNotToBeStored() {
             try {
-                provide().calculate(n);
-            }catch (Exception e){
+                calculateAndSave();
+            } catch (Exception e) {
                 ///ignore
             }
             Assertions.assertFalse(repository.valueExists(n), String.format("Value %d should not have been stored in DB", n));
@@ -52,6 +62,7 @@ public interface SquareInfrastructure {
 
     class InMemoryRepository implements Repository {
         private final Set<Integer> db = new HashSet<>();
+
         @Override
         public void saveSquareSide(int n) {
             db.add(n);
