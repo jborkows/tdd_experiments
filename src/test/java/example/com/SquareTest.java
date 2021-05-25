@@ -3,17 +3,18 @@ package example.com;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class SquareTest {
+public class SquareTest implements SquareInfrastructure {
 
     @Test
     void shouldNotAcceptZeros() {
-        Assertions.assertThrows(Square.NotAcceptableNumber.class, () -> new Square().calculate(0));
+        exec(0).shouldFail();
     }
 
     @Test
     void shouldNotAcceptNegatives() {
-        Assertions.assertThrows(Square.NotAcceptableNumber.class, () -> new Square().calculate(-1));
-        Assertions.assertThrows(Square.NotAcceptableNumber.class, () -> new Square().calculate(-2));
+        exec(-1).shouldFail();
+        exec(-2).shouldFail();
     }
+
 
 }
