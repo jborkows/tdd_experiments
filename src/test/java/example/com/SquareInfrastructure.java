@@ -25,5 +25,10 @@ public interface SquareInfrastructure {
         void shouldFail(){
             Assertions.assertThrows(Square.NotAcceptableNumber.class, () -> new Square().calculate(n));
         }
+
+        public void expectToBe(int i) {
+            var area = provide().calculate(n);
+            Assertions.assertEquals(i, area);
+        }
     }
 }
