@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class SquareTest {
-    @Test
-    void aaa(){
-        Square square = new Square();
-    }
 
+    @Test
+    void shouldNotAcceptZeros(){
+        Assertions.assertThrows(Square.ZeroIsNotAcceptable.class, ()-> new Square().calculate(0));
+    }
 
 }
