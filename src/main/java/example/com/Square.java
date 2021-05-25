@@ -13,7 +13,7 @@ public class Square {
 
     public int calculate(int n) {
         Optional<ValidSide> maybeValidSide = ValidSide.of(n);
-        repository.saveSquareSide(n);
+        maybeValidSide.ifPresent(v->repository.saveSquareSide(v.value()));
         return maybeValidSide.map(Square::square).orElseThrow(()->new NotAcceptableNumber(n));
     }
 

@@ -41,7 +41,11 @@ public interface SquareInfrastructure {
         }
 
         public void expectNotToBeStored() {
-            provide().calculate(n);
+            try {
+                provide().calculate(n);
+            }catch (Exception e){
+                ///ignore
+            }
             Assertions.assertFalse(repository.valueExists(n), String.format("Value %d should not have been stored in DB", n));
         }
     }
