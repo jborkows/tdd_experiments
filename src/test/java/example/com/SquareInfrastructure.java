@@ -1,5 +1,8 @@
 package example.com;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Assertions;
 
 public interface SquareInfrastructure {
@@ -8,7 +11,7 @@ public interface SquareInfrastructure {
     }
 
     default Validable exec(int n){
-        return new Validable(n, repository);
+        return new Validable(n, new InMemoryRepository());
     }
 
     class Validable {
@@ -37,6 +40,19 @@ public interface SquareInfrastructure {
         public void expectToBeStored() {
             provide().calculate(n);
             Assertions.assertTrue(repository.valueExists(n), String.format("Value %d should have been stored in DB", n));
+        }
+    }
+
+    class InMemoryRepository implements Repository {
+        private final Set<Integer> db = new HashSet<>();
+        @Override
+        public void saveSquareSide(int n) {
+            db.add(n);
+        }
+
+        @Override
+        public boolean valueExists(int n) {
+            return db.contains(n);
         }
     }
 }
