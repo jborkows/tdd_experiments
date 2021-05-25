@@ -1,5 +1,3 @@
-(Done) for side 0 area cannot be calculated
-for negative sides cannot calculate
 For side =1 area is 1
-should not store for invalid data
 should store invalid sides into db
+should not store for invalid data
