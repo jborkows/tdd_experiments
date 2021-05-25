@@ -1,14 +1,19 @@
 package example.com;
 
+import java.util.Optional;
+
 public class Square {
 
     public static final int MAX_SIDE = 1000;
 
     public int calculate(int n) {
-        if(n <= 0 || n > MAX_SIDE){
-            throw new NotAcceptableNumber(n);
-        }
-        return n*n;
+        Optional<ValidSide> maybeValidSide = ValidSide.of(n);
+        return maybeValidSide.map(Square::square).orElseThrow(()->new NotAcceptableNumber(n));
+    }
+
+    private static int square(ValidSide validSide) {
+        var value = validSide.value();
+        return value * value;
     }
 
     static class NotAcceptableNumber extends RuntimeException {

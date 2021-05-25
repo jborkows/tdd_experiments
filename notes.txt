@@ -1,3 +1,2 @@
 should store invalid sides into db
 should not store for invalid data
-check calculation for very big number
