@@ -8,4 +8,6 @@ public class SquareTest {
     void aaa(){
         Square square = new Square();
     }
+
+
 }

@@ -7,8 +7,13 @@ Developer (D): Ok. I am doing it.
 
 After some time:
 
-Business (B): clients were using lately your function and there were some errors.
-Developer (D): What? <br>
-Business (B): Some of them got some strange results.
-Developer (D): Ok I will look at it... 
+B: clients were using lately your function and there were some errors.
+
+D: What? 
+
+B: Some of them got some strange results.
+
+D: Ok I will look at it... 
 (lets try once again...)
+
+B: We have also found some strange side values in db.
