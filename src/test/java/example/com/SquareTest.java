@@ -24,8 +24,7 @@ public class SquareTest implements SquareInfrastructure {
 
     @Test
     void testCalculatingForVeryLargeNumber(){
-        exec(1001).shouldFail();
-        exec(1073741823).shouldFail();
+        exec(Square.MAX_SIDE + 1).shouldFail();
     }
 
 }
