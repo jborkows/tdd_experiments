@@ -18,5 +18,11 @@ public class DirtySolution {
         public void saveSquareSide(int n){
             //do nasty work here
         }
+
+        @Override
+        public boolean valueExists(int n) {
+            //do nasty work here
+            return false;
+        }
     }
 }
