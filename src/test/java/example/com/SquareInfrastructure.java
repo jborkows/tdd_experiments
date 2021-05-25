@@ -6,9 +6,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 
 public interface SquareInfrastructure {
-    default Square provide(){
-        return new Square();
-    }
+
 
     default Validable exec(int n){
         return new Validable(n, new InMemoryRepository());
@@ -24,11 +22,11 @@ public interface SquareInfrastructure {
         }
 
         private Square provide(){
-            return new Square();
+            return new Square(repository);
         }
 
         void shouldFail(){
-            Assertions.assertThrows(Square.NotAcceptableNumber.class, () -> new Square().calculate(n));
+            Assertions.assertThrows(Square.NotAcceptableNumber.class, () -> provide().calculate(n));
         }
 
         public void expectToBe(int i) {

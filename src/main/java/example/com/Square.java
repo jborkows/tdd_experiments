@@ -6,6 +6,10 @@ public class Square {
 
     public static final int MAX_SIDE = 1000;
 
+    public Square(Repository repository) {
+
+    }
+
     public int calculate(int n) {
         Optional<ValidSide> maybeValidSide = ValidSide.of(n);
         return maybeValidSide.map(Square::square).orElseThrow(()->new NotAcceptableNumber(n));
