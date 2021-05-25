@@ -1,34 +1,20 @@
 package example.com;
 
-import java.util.Optional;
-
 public class Square {
 
-    public static final int MAX_SIDE = 1000;
-    private final Repository repository;
+    private final Store store;
+    private final Parser parser;
+    private final Calculator calculator;
 
-    public Square(Repository repository) {
-        this.repository = repository;
+    public Square(Repository repository, Parser parser, Calculator calculator) {
+        this.store = new Store(repository);
+        this.parser = parser;
+        this.calculator = calculator;
     }
 
-    public int calculate(int n) {
-        return ValidSide.of(n).map(Square::square).orElseThrow(()->new NotAcceptableNumber(n));
+    public int calculateAndSave(int n) throws NotAcceptableNumber {
+        ValidSide validSide = parser.parse(n);
+        store.store(validSide);
+        return calculator.apply(validSide);
     }
-
-    public void storeValue(int n){
-        ValidSide.of(n).ifPresent(v->repository.saveSquareSide(v.value()));
-    }
-
-    private static int square(ValidSide validSide) {
-        var value = validSide.value();
-        return value * value;
-    }
-
-    static class NotAcceptableNumber extends RuntimeException {
-
-        public NotAcceptableNumber(int n) {
-
-        }
-    }
-
 }

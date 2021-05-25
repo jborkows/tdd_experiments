@@ -1,6 +1,6 @@
 package example.com;
 
-import static example.com.Square.MAX_SIDE;
+import static example.com.Parser.MAX_SIDE;
 
 import java.util.Optional;
 
@@ -15,7 +15,12 @@ public final class ValidSide {
         return value;
     }
 
-    static Optional<ValidSide> of(int n){
+    //test only
+    static ValidSide unsafeOf(int n){
+        return of(n).orElse(null);
+    }
+
+    public static Optional<ValidSide> of(int n){
         if(n <= 0 || n > MAX_SIDE){
             return Optional.empty();
         }else{
