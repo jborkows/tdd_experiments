@@ -6,6 +6,6 @@ import org.junit.jupiter.api.Test;
 public class SquareTest {
     @Test
     void aaa(){
-        Assertions.assertTrue(false);
+        Square square = new Square();
     }
 }
