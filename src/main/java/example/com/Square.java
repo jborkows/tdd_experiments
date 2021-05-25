@@ -3,18 +3,15 @@ package example.com;
 public class Square {
     public void calculate(int n) {
         if(n == 0){
-            throw new ZeroIsNotAcceptable();
+            throw new NotAcceptableNumber();
         }else if(n < 0){
-            throw new NegativeIsNotAcceptable();
+            throw new NotAcceptableNumber();
         }
 
     }
 
-    static class ZeroIsNotAcceptable extends RuntimeException {
+    static class NotAcceptableNumber extends RuntimeException {
 
     }
 
-    static class
-    NegativeIsNotAcceptable extends RuntimeException {
-    }
 }
