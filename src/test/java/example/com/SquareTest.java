@@ -26,9 +26,9 @@ public class SquareTest implements SquareInfrastructure {
         exec(Square.MAX_SIDE + 1).shouldFail();
     }
 
-//    @Test
-//    void shouldStoreValidSidesIntoDB(){
-//
-//    }
+    @Test
+    void shouldStoreValidSidesIntoDB(){
+        exec(1).expectToBeStored();
+    }
 
 }
