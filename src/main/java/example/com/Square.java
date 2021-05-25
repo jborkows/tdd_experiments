@@ -4,7 +4,7 @@ public class Square {
     public void calculate(int n) {
         if(n == 0){
             throw new ZeroIsNotAcceptable();
-        }else if(n == -1){
+        }else if(n < 0){
             throw new NegativeIsNotAcceptable();
         }
 

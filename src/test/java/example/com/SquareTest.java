@@ -13,6 +13,7 @@ public class SquareTest {
     @Test
     void shouldNotAcceptNegatives() {
         Assertions.assertThrows(Square.NegativeIsNotAcceptable.class, () -> new Square().calculate(-1));
+        Assertions.assertThrows(Square.NegativeIsNotAcceptable.class, () -> new Square().calculate(-2));
     }
 
 }
