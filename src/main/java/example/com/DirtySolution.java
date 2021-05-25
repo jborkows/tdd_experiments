@@ -13,8 +13,9 @@ public class DirtySolution {
         return n*n;
     }
 
-    static class FullEEDB {
-        void saveSquareSide(int n){
+    static class FullEEDB implements Repository {
+        @Override
+        public void saveSquareSide(int n){
             //do nasty work here
         }
     }

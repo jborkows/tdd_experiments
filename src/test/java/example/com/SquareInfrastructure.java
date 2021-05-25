@@ -8,14 +8,16 @@ public interface SquareInfrastructure {
     }
 
     default Validable exec(int n){
-        return new Validable(n);
+        return new Validable(n, repository);
     }
 
     class Validable {
         private final int n;
+        private final Repository repository;
 
-        public Validable(int n) {
+        public Validable(int n, Repository repository) {
             this.n = n;
+            this.repository = repository;
         }
 
         private Square provide(){
@@ -30,9 +32,11 @@ public interface SquareInfrastructure {
             var area = provide().calculate(n);
             Assertions.assertEquals(i, area);
         }
-        public void expectToBePositive() {
-            var area = provide().calculate(n);
-            Assertions.assertTrue(area > 0, String.format("area for %d = %d. Is not a positive number", n, area));
+
+
+        public void expectToBeStored() {
+            provide().calculate(n);
+            Assertions.assertTrue(repository.valueExists(n), String.format("Value %d should have been stored in DB", n));
         }
     }
 }
